@@ -1,7 +1,0 @@
-﻿  Cal_dis.cpp
-C:\Users\Karton\Desktop\Дискретная математика\Лабораторная работа №1\Cal_dis\Cal_dis.cpp(239,26): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Karton\Desktop\Дискретная математика\Лабораторная работа №1\Cal_dis\Cal_dis.cpp(240,27): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Karton\Desktop\Дискретная математика\Лабораторная работа №1\Cal_dis\Cal_dis.cpp(384,21): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Karton\Desktop\Дискретная математика\Лабораторная работа №1\Cal_dis\Cal_dis.cpp(385,21): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Karton\Desktop\Дискретная математика\Лабораторная работа №1\Cal_dis\Cal_dis.cpp(379): warning C4715: find_staples: значение возвращается не при всех путях выполнения
-  Cal_dis.vcxproj -> C:\Users\Karton\Desktop\Дискретная математика\Лабораторная работа №1\Cal_dis\x64\Debug\Cal_dis.exe
