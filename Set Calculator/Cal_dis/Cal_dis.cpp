@@ -810,29 +810,38 @@ int main()
             }
             break;
         default:
-            //exp = "You can enter your example here if you don't want to enter it through the console. After filling in this field, immediately call the expression count.";
-            system("cls");
-            string buff3;
-            cout << "Решение:" << endl;
-            cout << exp << endl;
-            pair<int, int> staples;
-            while (exp.find('(') != -1)
+            if(!isStaples)
             {
-                staples = find_staples(exp);
-                exp = counting(exp, staples, a, b);
+                //exp = "You can enter your example here if you don't want to enter it through the console. After filling in this field, immediately call the expression count.";
+                system("cls");
+                string buff3;
+                cout << "Решение:" << endl;
                 cout << exp << endl;
-            }
-            exp = process_complement(exp, a, b);
-            cout << exp << endl;
-            while (find_expression(exp).second != -1)
-            {
-                staples = find_expression(exp);
-                exp = counting(exp, find_expression(exp), a, b);
+                pair<int, int> staples;
+                while (exp.find('(') != -1)
+                {
+                    staples = find_staples(exp);
+                    exp = counting(exp, staples, a, b);
+                    cout << exp << endl;
+                }
+                exp = process_complement(exp, a, b);
                 cout << exp << endl;
+                while (find_expression(exp).second != -1)
+                {
+                    staples = find_expression(exp);
+                    exp = counting(exp, find_expression(exp), a, b);
+                    cout << exp << endl;
+                }
+                return 0;
             }
-            return 0;
+	    else
+	    {
+		system("cls");
+		cout << "Ошибка: Скобки не закрыты." << endl;
+		system("pause");
+		break;    
+	    }
         }
     }
-
     return 0;
 }
