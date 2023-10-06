@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <random>
 #include <vector>
@@ -87,12 +87,12 @@ public:
         upp = upper_bound;
     }
 
-    Set complement(int lower_bound, int upper_bound) const 
+    Set complement(int lower_bound, int upper_bound) 
     {
         Set result;
         for (int i = lower_bound; i <= upper_bound; i++) 
         {
-            if ( find(elements.begin(), elements.end(), i) == elements.end()) 
+            if (find(elements.begin(), elements.end(), i) == elements.end()) 
             {
                 result.add(i);
             }
@@ -242,11 +242,18 @@ string process_complement(string expression, int lower_bound, int upper_bound)
         // Извлекаем подвыражение, для которого нужно найти дополнение
         string sub_expression = expression.substr(open_bracket, close_bracket - open_bracket + 1);
         Set set_to_complement;
+        string buff;
 
         // Преобразуем подвыражение в Set
         for (int i = 1; i < sub_expression.size(); i++) {
-            if (sub_expression[i] > 47 && sub_expression[i] < 58) {
-                set_to_complement.add(sub_expression[i] - '0');
+            if (sub_expression[i] > 47 && sub_expression[i] < 58 || sub_expression[i] == '-')
+            {
+                buff += sub_expression[i];
+            }
+            else
+            {
+                set_to_complement.add(stoi(buff));
+                buff.clear();
             }
         }
 
@@ -287,7 +294,7 @@ string counting(string val, pair<int, int> staples, int lower_bound, int upper_b
     if (val.find('(') < val.size()) expression = val.substr(open + 1, close - open - 1);
     else expression = val.substr(open, close - open + 1);
 
-    expression = process_complement(expression, 0, 15);
+    expression = process_complement(expression, lower_bound, upper_bound);
 
     while (true)
     {
@@ -313,15 +320,7 @@ string counting(string val, pair<int, int> staples, int lower_bound, int upper_b
                 if (left_operand[i] > 47 && left_operand[i] < 58 || left_operand[i] == '-') { buff += left_operand[i]; }
                 else 
                 { 
-                    if (buff[0] == '-')
-                    {
-                        buff.erase(0, 1);
-                        int numBuff = stoi(buff);
-                        numBuff *= -1;
-                        A.add(numBuff);
-                        buff.clear();
-                    }
-                    else A.add(stoi(buff)); buff.clear(); 
+                    A.add(stoi(buff)); buff.clear(); 
                 }
             }
 
@@ -331,15 +330,7 @@ string counting(string val, pair<int, int> staples, int lower_bound, int upper_b
                 if (right_operand[i] > 47 && right_operand[i] < 58 || right_operand[i] == '-') { buff += right_operand[i]; }
                 else 
                 { 
-                    if (buff[0] == '-')
-                    {
-                        buff.erase(0, 1);
-                        int numBuff = stoi(buff);
-                        numBuff *= -1;
-                        A.add(numBuff);
-                        buff.clear();
-                    }
-                    else B.add(stoi(buff)); buff.clear(); 
+                    B.add(stoi(buff)); buff.clear(); 
                 }
             }
 
@@ -810,7 +801,7 @@ int main()
             }
             break;
         default:
-            if(!isStaples)
+            if (!isStaples)
             {
                 //exp = "You can enter your example here if you don't want to enter it through the console. After filling in this field, immediately call the expression count.";
                 system("cls");
@@ -834,14 +825,15 @@ int main()
                 }
                 return 0;
             }
-	    else
-	    {
-		system("cls");
-		cout << "Ошибка: Скобки не закрыты." << endl;
-		system("pause");
-		break;    
-	    }
+            else
+            {
+                system("cls");
+                cout << "Ошибка: Скобки не закрыты." << endl;
+                system("pause");
+                break;
+            }
         }
     }
+
     return 0;
 }
