@@ -252,8 +252,11 @@ string process_complement(string expression, int lower_bound, int upper_bound)
             }
             else
             {
-                set_to_complement.add(stoi(buff));
-                buff.clear();
+                if (!buff.empty())
+                {
+                    set_to_complement.add(stoi(buff));
+                    buff.clear();
+                }
             }
         }
 
